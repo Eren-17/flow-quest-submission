@@ -667,6 +667,24 @@ transaction {
   }
 }
 ```
+## Chapter 4 - Day 2
+
+- **Q.1 What does `.link()` do?**
+    
+    - It points to resource stored in `/storage`. And helps you to make it more restrictive by using `/public` or `/private`
+    
+- **Q.2 In your own words (no code), explain how we can use resource interfaces to only expose certain things to the /public/ path.**
+
+    - Resource Interfaces comes handy while createing more restrictive types of resource's. And can also use it to restrict the capability.
+    
+- **Q.3 Deploy a contract that contains a resource that implements a resource interface.**
+
+
+
+
+
+
+
 
 
 
