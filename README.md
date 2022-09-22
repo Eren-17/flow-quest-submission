@@ -622,6 +622,53 @@ pub contract storage {
 ```
 
 - **A transaction that first saves the resource to account storage, then loads it out of account storage, logs a field inside the resource, and destroys it.**
+``` cadence
+import storage from 0x01
+
+transaction {
+
+  prepare(signer: AuthAccount) {
+    let new <- storage.createHello()
+
+    signer.save(<- new, to: /storage/HelloResource)
+
+    let newLoad <- signer.load<@storage.Hello>(from: /storage/HelloResource)
+                    ?? panic("The thing you are looking for is not here!")
+                    log (newLoad.name)
+
+                    destroy  newLoad
+
+  }
+
+  execute {
+    
+  }
+}
+```
+- **A transaction that first saves the resource to account storage, then borrows a reference to it, and logs a field inside the resource.**
+``` cadence
+import storage from 0x01
+
+transaction {
+
+  prepare(signer: AuthAccount) {
+    let new <- storage.createHello()
+
+    signer.save(<- new, to: /storage/HelloResource)
+
+    let newborrow = signer.borrow<&storage.Hello>(from: /storage/HelloResource)
+                    ?? panic("it's not here")
+                    log(newborrow.name)
+
+  }
+
+  execute {
+    
+  }
+}
+```
+
+
 
 
 
